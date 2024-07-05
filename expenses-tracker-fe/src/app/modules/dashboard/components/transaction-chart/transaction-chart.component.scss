@@ -1,0 +1,108 @@
+$axis-padding: 0.5rem;
+$axis-boundary: 2rem;
+
+.chart-body {
+  position: relative;
+  padding: 0;
+  flex-shrink: 0;
+  flex-basis: 15rem;
+}
+
+.axis {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  padding: $axis-padding;
+  overflow: hidden;
+
+  &.y-axis {
+    flex-direction: column;
+    width: 2rem;
+    left: $axis-padding;
+    height: calc(100% - #{$axis-boundary});
+    top: 0;
+    &::before {
+      content: '';
+      position: absolute;
+      top: $axis-padding;
+      bottom: $axis-padding;
+      border-left: 1px solid #f0f0f0;
+    }
+  }
+
+  &.x-axis {
+    flex-direction: row;
+    height: 2rem;
+    bottom: $axis-padding;
+    width: calc(100% - #{$axis-boundary});
+    right: 0;
+    & > div {
+      position: absolute;
+    }
+  }
+
+  & > div {
+    z-index: 1;
+    background-color: white;
+    padding: 0 .2rem;
+  }
+}
+
+.chart-bgr {
+  position: absolute;
+  top: $axis-padding;
+  left: $axis-padding + $axis-boundary;
+  right: $axis-padding;
+  bottom: $axis-padding + $axis-boundary;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    left: $axis-padding;
+    right: $axis-padding;
+    border-bottom: 1px solid #f0f0f0;
+  }
+}
+
+.data-bar {
+  position: absolute;
+  transform: translateX(50%);
+  width: 2.5rem;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.3s ease;
+
+  & > span {
+    color: white;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: .6rem;
+  }
+
+  &.expense-bar {
+    top: 50%;
+    background: red;
+    & > span {
+      bottom: 0;
+    }
+  }
+
+  &.income-bar {
+    bottom: 50%;
+    background: green;
+    & > span {
+      top: 0;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      border-left: 1px solid #f0f0f0;
+    }
+  }
+}

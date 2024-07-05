@@ -1,0 +1,11 @@
+nb-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit-categories-modal {
+  max-height: 620px;
+  height: auto !important;
+  width: 600px;
+}

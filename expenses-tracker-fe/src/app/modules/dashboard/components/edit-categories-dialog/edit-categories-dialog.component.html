@@ -1,0 +1,38 @@
+<nb-card size="medium" class="edit-categories-modal">
+  <nb-card-header>
+    Edit transaction categories
+  </nb-card-header>
+  <nb-card-body>
+    <div class="vertical-flex">
+
+      <nb-form-field>
+        <input fullWidth nbInput [(ngModel)]="newCategory.title" [placeholder]="'Add new category'" (keydown.enter)="addCategory()" >
+        <button nbSuffix nbButton ghost (click)="addCategory()" [title]="'Add new category'" >
+          <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+      </nb-form-field>
+
+      <nb-card>
+        <nb-card-header>
+          Transaction categories
+        </nb-card-header>
+        <nb-list class="overflow-list">
+          <nb-list-item *ngIf="!(categories$ | async)?.length">
+            <span class="text-muted">You haven't created any category yet.</span>
+          </nb-list-item>
+          <nb-list-item *ngFor="let category of categories$ | async">
+            <span>{{ category.title }}</span>
+            <button nbButton ghost (click)="deleteCategory(category.id)" [title]="'Delete category'" size="small">
+              <nb-icon icon="trash-2-outline"></nb-icon>
+            </button>
+          </nb-list-item>
+        </nb-list>
+      </nb-card>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="dialog-footer">
+    <button nbButton status="basic" appearance="outline" (click)="close()">
+      Close
+    </button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,27 @@
+nb-list-item {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+nb-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.transaction-text {
+  min-width: 50%;
+  flex-grow: 1;
+}
+
+.transaction-amount {
+  max-width: 10rem;
+  flex-grow: 1;
+  font-weight: bold;
+  text-align: right;
+}
+
+.transaction-date {
+  max-width: 6rem;
+  flex-grow: 1;
+}

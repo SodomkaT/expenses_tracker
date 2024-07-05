@@ -1,0 +1,35 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <div class="app-header">
+      <app-logo></app-logo>
+      <nb-actions>
+        <nb-action icon="log-out-outline" (click)="logout()"></nb-action>
+      </nb-actions>
+    </div>
+  </nb-layout-header>
+
+  <nb-layout-header subheader>
+    <nb-actions>
+      <nb-action icon="plus-outline" (click)="addTransactionDialog()" [title]="'Add transaction'"></nb-action>
+      <nb-action icon="pricetags-outline" (click)="editCategoriesDialog()" [title]="'Edit categories'"></nb-action>
+    </nb-actions>
+  </nb-layout-header>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header>
+        <div class="title">Transactions chart:</div>
+      </nb-card-header>
+      <nb-card-body>
+        <app-transaction-chart [transactionList]="transactions$ | async"></app-transaction-chart>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        <div class="title">Transactions list:</div>
+      </nb-card-header>
+      <nb-card-body>
+        <app-transaction-list [transactions]="(transactions$ | async) || []" [categories]="(categories$ | async) || []"></app-transaction-list>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

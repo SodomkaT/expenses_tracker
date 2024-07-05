@@ -1,0 +1,72 @@
+<nb-layout>
+  <nb-layout-column class="login-form-body">
+    <nb-card>
+      <nb-card-body class="login-card">
+
+        <app-logo></app-logo>
+
+        <div class="separator"></div>
+
+        <form class="login-form" (ngSubmit)="login()" *ngIf="!registerMode" [formGroup]="loginForm">
+
+          <nb-form-field>
+            <input type="text" nbInput fullWidth placeholder="Email" [formControlName]="'email'" [status]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid ? 'danger' : 'default'">
+            <div class="input-err-label" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')">This is not email</div>
+            <div class="input-err-label" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">Email is required</div>
+
+          </nb-form-field>
+          <nb-form-field>
+            <input [type]="(passwordVisible$ | async) ? 'text' : 'password'" nbInput fullWidth placeholder="Password" [formControlName]="'password'" [status]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid ? 'danger' : 'default'">
+            <button nbSuffix nbButton ghost (click)="togglePasswordVisibility()" type="button">
+              <nb-icon [icon]="(passwordVisible$ | async) ? 'eye-outline' : 'eye-off-2-outline'"
+                       pack="eva"
+                       [attr.aria-label]="'Click to show password'">
+              </nb-icon>
+            </button>
+            <div class="input-err-label" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">Password is required</div>
+          </nb-form-field>
+
+          <div class="actions">
+
+            <button nbButton fullWidth hero status="primary" type="submit">Login</button>
+
+            <button nbButton fullWidth outline status="primary" type="button" (click)="register()">Register</button>
+          </div>
+        </form>
+
+        <form class="login-form" (ngSubmit)="signUp()" *ngIf="registerMode" [formGroup]="regForm">
+          <button nbButton fullWidth appearance="ghost" status="primary" type="button" (click)="registerMode = false">
+            <nb-icon icon="arrow-back-outline" pack="eva"></nb-icon>
+            Back to login
+          </button>
+
+          <nb-form-field>
+            <input type="text" nbInput fullWidth placeholder="Email" [formControlName]="'email'" [status]="regForm.get('email')?.touched && regForm.get('email')?.invalid ? 'danger' : 'default'">
+            <div class="input-err-label" *ngIf="regForm.get('email')?.touched && regForm.get('email')?.hasError('email')">Not a valid email</div>
+            <div class="input-err-label" *ngIf="regForm.get('email')?.touched && regForm.get('email')?.hasError('required')">Email is required</div>
+
+          </nb-form-field>
+          <nb-form-field>
+            <input type="password" nbInput fullWidth placeholder="Password" [formControlName]="'password'" [status]="regForm.get('password')?.touched && regForm.get('password')?.invalid ? 'danger' : 'default'">
+            <div class="input-err-label" *ngIf="regForm.get('password')?.touched && regForm.get('password')?.invalid">Password is required</div>
+          </nb-form-field>
+          <nb-form-field>
+            <input type="password" nbInput fullWidth placeholder="Password" [formControlName]="'passwordAgain'" [status]="regForm.get('passwordAgain')?.touched && regForm.get('passwordAgain')?.invalid ? 'danger' : 'default'">
+            <div class="input-err-label" *ngIf="regForm.get('passwordAgain')?.touched && regForm.get('passwordAgain')?.hasError('required')">Password is required</div>
+            <div class="input-err-label" *ngIf="regForm.get('passwordAgain')?.dirty && regForm.get('passwordAgain')?.hasError('passwordsNotMatch')">Passwords don't match</div>
+          </nb-form-field>
+
+          <div class="actions">
+
+            <button nbButton fullWidth hero status="primary" type="submit">Register</button>
+          </div>
+        </form>
+
+
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
+
+

@@ -1,0 +1,38 @@
+<nb-card>
+  <nb-card-body class="chart-body" *ngIf="transactions?.length">
+    <div class="axis y-axis">
+      <div>{{ maxYValue }}</div>
+      <div>0</div>
+      <div>{{ '-' + maxYValue }}</div>
+    </div>
+    <div class="axis x-axis">
+      <div
+        *ngFor="let day of xItems; let idx = index"
+        [style.left]="((idx + 0.25) * (100 / 14)) + '%'"
+      >{{ day | date }}</div>
+    </div>
+    <div class="chart-bgr">
+
+      <div
+        *ngFor="let day of xItems; let idx = index"
+        [style.left]="((idx + 0.25) * (100 / 14)) + '%'"
+        [style.height]="((dailySum(day, 'INCOME') / maxYValue) * 50) + '%'"
+        class="data-bar income-bar"
+      >
+        <span>{{ dailySum(day, 'INCOME')  }}</span>
+      </div>
+      <div
+        *ngFor="let day of xItems; let idx = index"
+        [style.left]="((idx + 0.25) * (100 / 14)) + '%'"
+        [style.height]="((dailySum(day, 'EXPENSE') / maxYValue) * 50) + '%'"
+        class="data-bar expense-bar"
+      >
+        <span>{{ dailySum(day, 'EXPENSE') }}</span>
+      </div>
+
+    </div>
+  </nb-card-body>
+  <nb-card-body *ngIf="!transactions?.length">
+    <div class="text-muted">No data</div>
+  </nb-card-body>
+</nb-card>

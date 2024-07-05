@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+.input-err-label {
+  color: red;
+  font-size: .7rem;
+  position: absolute;
+}
+
+.text-muted {
+  color: #a7acaf;
+}
+
+.text-small {
+  font-size: .8rem;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vertical-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group-horizontal {
+  display: flex;
+  gap: 1.5rem;
+
+  & > * {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+.overflow-list {
+  overflow-y: auto;
+  max-height: 300px;
+}

@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-list *ngIf="transactions?.length">
+    <nb-list-item *ngFor="let transaction of transactions">
+      <div class="transaction-date">{{transaction.date | date}}</div>
+      <div class="transaction-text">
+        <div>{{ transaction.title }}</div>
+        <div class="text-muted text-small">{{ transaction.description }}</div>
+      </div>
+      <div>{{ getTransactionCategory(transaction.categoryId) }}</div>
+      <div class="transaction-amount">
+        <nb-icon [icon]="transaction.type === 'EXPENSE' ? 'arrow-downward-outline' : 'arrow-upward-outline'" [status]="transaction.type === 'EXPENSE' ? 'danger' : 'success'"></nb-icon>
+        <span [class]="transaction.type === 'EXPENSE' ? 'text-danger' : 'text-success'">{{ transaction.amount }}</span>
+      </div>
+      <button nbButton ghost (click)="deleteTransaction(transaction.id)" [title]="'Delete category'">
+        <nb-icon icon="trash-2-outline"></nb-icon>
+      </button>
+    </nb-list-item>
+  </nb-list>
+  <nb-card-body *ngIf="!transactions?.length">
+    <div class="text-muted">You haven't added any transaction yet.</div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,31 @@
+.login-form-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.separator {
+  border-bottom: 1px solid lightgray;
+  margin: 0 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
